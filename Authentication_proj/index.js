@@ -3,8 +3,7 @@ const app = express();
 const pg = require("pg");
 app.use(express.json());
 const db = new pg.Client({
-  connectionString:
-    "postgresql://postgres:yDYxmHOKmozPWuJIIrfQEpBfiHDhGeVZ@viaduct.proxy.rlwy.net:30196/railway",
+  connectionString: process.env.DATABASE_URL,
 
   ssl: {
     rejectUnauthorized: false,
@@ -68,7 +67,6 @@ app.delete("/:id", async (req, res) => {
     console.log(e);
   }
 });
-
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
